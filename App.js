@@ -1,18 +1,20 @@
 import React from 'react';
-import { MapView } from 'expo';
+import  MapView, { Marker } from 'react-native-maps';
+import {StyleSheet, Text, View, TextInput} from 'react-native'
+import {Provider, connect} from 'react-redux'
+import store, {addCommunication} from './store'
+import Map from './components/Map.js'
 
 export default class App extends React.Component {
   render() {
-    return (
-      <MapView
-        style={{ flex: 1 }}
-        initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      />
+
+    return (  
+      <Provider store = {store} >
+        <Map />
+      </Provider>
+      
     );
   }
 }
+
+  
