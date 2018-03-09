@@ -12,10 +12,6 @@ export class Map extends React.Component {
     return (
       
     <View style={style.container}>
-      <View style={style.communication}>
-      <TextInput onChangeText = {(text)=>{this.props.changeInput(text)}} placeholder='What are you looking for?' style={style.communication}/>
-      <Button onPress = {(event)=>{this.props.addCommunication(this.props.currentInput)}}title='send'>Send</Button>
-      </View>
       <MapView
         style={style.map}
         initialRegion={{
@@ -25,6 +21,7 @@ export class Map extends React.Component {
           longitudeDelta: 0.1,
         }}
       >
+      
       <Marker draggable
         coordinate={{latitude: 40.730610, longitude: -73.935242}}
         title='Somewhere in New York'

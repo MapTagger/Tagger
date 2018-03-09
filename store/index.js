@@ -9,7 +9,7 @@ export const addCommunication = message => ({type: ADD_REQUEST, message})
 export const changeInput = input => ({type: CHANGE_INPUT, input})
 
 const initialState = {
-    message : ['Initialization'],
+    message : [],
     currentInput : ''
 }
 

@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, TextInput} from 'react-native'
 import {Provider, connect} from 'react-redux'
 import store, {addCommunication} from './store'
 //import InputSearch from './components/input-search.js'
-import AddRecommendations from './components/add-recommendations.js'
+import GooglePlacesInput from './components/places-input.js'
 
 
 export default class App extends React.Component {
@@ -12,7 +12,7 @@ export default class App extends React.Component {
 
     return (  
       <Provider store = {store} >
-        <AddRecommendations />
+        <GooglePlacesInput />
       </Provider>
       
     );
