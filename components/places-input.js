@@ -2,7 +2,7 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addCommunication, changeInput} from '../store'
+import store, {addCommunication, changeInput, addMarker} from '../store'
 import Map from './map'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
  
@@ -28,6 +28,11 @@ return (
         console.log('latitude', details.geometry.location.lat);
         console.log('longitude', details.geometry.location.lng)
         this.props.addCommunication(data.structured_formatting.main_text)
+
+        const suggestion = {coordinates: {latitude: details.geometry.location.lat, longitude: details.geometry.location.lng}, name: data.structured_formatting.main_text }
+        console.log(suggestion)
+        this.props.addMarker(suggestion)
+
       }}
       getDefaultValue={() => {
         return ''; // text input default value
@@ -68,7 +73,7 @@ return (
     //   renderLeftButton={() => <Image source={require('path/custom/left-icon')} />}
     //   renderRightButton={() => <Text>Custom text after the input</Text>}
     />
-    <Map message={this.props.message} currentInput={this.props.currentInput} addCommunication={this.props.addCommunication} changeInput={this.props.changeInput} style={style} />
+    <Map  currentInput={this.props.currentInput} addCommunication={this.props.addCommunication} changeInput={this.props.changeInput} style={style} />
     </View>
   );
 }
@@ -78,7 +83,8 @@ return (
 const mapProps = state => ({message: state.message, currentInput: state.currentInput})
 const mapDispatch = dispatch => ({
     addCommunication: message => dispatch(addCommunication(message)),
-    changeInput: input => dispatch(changeInput(input))
+    changeInput: input => dispatch(changeInput(input)),
+    addMarker: marker => dispatch(addMarker(marker))
 })
 
 export default connect(mapProps,mapDispatch)(GooglePlacesInput)
@@ -96,3 +102,7 @@ const style = StyleSheet.create({
 //     communication: {flex: 2, borderColor: 'black', borderWidth: 3}
     
 //   })
+
+
+
+//message={this.props.message}

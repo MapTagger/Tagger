@@ -21,13 +21,18 @@ export class Map extends React.Component {
           longitudeDelta: 0.1,
         }}
       >
-      
+      {this.props.markers.length > 0 && this.props.markers.map((eachMarker,index)=>(
+          <View style={style.container} key={index}>
+
       <Marker draggable
-        coordinate={{latitude: 40.730610, longitude: -73.935242}}
-        title='Somewhere in New York'
+        coordinate={eachMarker.coordinates}
+        title={eachMarker.name}
         description='Dropping a Marker'
         onDragEnd = {()=>{}}
       />
+      </View>
+      )
+    )}
     
       </MapView>
       <View style={style.sideBar}>
@@ -39,10 +44,11 @@ export class Map extends React.Component {
   }
 }
 
-const mapProps = state => ({message: state.message, currentInput: state.currentInput})
+const mapProps = state => ({message: state.message, currentInput: state.currentInput, markers: state.markers})
 const mapDispatch = dispatch => ({
     addCommunication: message => dispatch(addCommunication(message)),
-    changeInput: input => dispatch(changeInput(input))
+    changeInput: input => dispatch(changeInput(input)),
+    
 })
 export default connect(mapProps,mapDispatch)(Map)
 
