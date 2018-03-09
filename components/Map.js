@@ -7,7 +7,7 @@ import store, {addCommunication, changeInput} from '../store'
 export class Map extends React.Component {
   render() {
 
-    console.log('Look Here', store)
+    //console.log('Look Here', store)
 
     return (
       
@@ -34,7 +34,7 @@ export class Map extends React.Component {
     
       </MapView>
       <View style={style.sideBar}>
-        {this.props.message.map(eachMessage=>(<Text>{eachMessage}</Text>))}
+        {this.props.message.map((eachMessage, index)=>(<Text key={index}>{eachMessage}</Text>))}
       </View>
     </View>
       
@@ -53,6 +53,6 @@ const style = StyleSheet.create({
   container: {flex:1},
   map: { flex: 5 },
   sideBar: {flex: 3, borderColor: 'black', borderWidth: 3},
-  communication: {flex: 2, fontSize: 24, borderColor: 'black', borderWidth: 3}
+  communication: {flex: 2, borderColor: 'black', borderWidth: 3}
   
 })
