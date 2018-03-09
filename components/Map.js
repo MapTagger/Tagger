@@ -14,7 +14,7 @@ export class Map extends React.Component {
     <View style={style.container}>
       <View style={style.communication}>
       <TextInput onChangeText = {(text)=>{this.props.changeInput(text)}} placeholder='What are you looking for?' style={style.communication}/>
-      <Button onPress = {(event)=>{this.props.addCommunication(this.props.currentInput)}}title='send'>Send</Button>
+      <Button onPress = {(event)=>{this.props.addCommunication(this.props.currentInput); this.props.changeInput('')}}title='send'>Send</Button>
       </View>
       <MapView
         style={style.map}
