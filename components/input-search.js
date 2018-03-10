@@ -2,20 +2,22 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addCommunication, changeInput} from '../store'
+import store, {addInputSearch, changeInput, clearInput} from '../store'
+import {Actions} from 'react-native-router-flux'
 
-export class InputSearch extends React.Component {
+
+ export class InputSearch extends React.Component {
   render() {
 
     return (
       
     <View style={style.container}>
       <View style={style.communication}>
-      <TextInput onChangeText = {(text)=>{this.props.changeInput(text)}} placeholder='What are you looking for?' style={style.communication}/>
-      <Button onPress = {(event)=>{this.props.addCommunication(this.props.currentInput)}}title='send'>Send</Button>
+      <TextInput onChangeText = {(text)=>{this.props.changeInput(text)}} value={this.props.currentInput} placeholder='What are you looking for?' style={style.communication}/>
+      <Button onPress = {(event)=>{this.props.addInputSearch(this.props.currentInput)}}title='send'>Add</Button>
       </View>
       <View style={style.sideBar}>
-        {this.props.message.map((eachMessage, index)=>(<Text key={index}>{eachMessage}</Text>))}
+        {this.props.inputSearch.map((eachSearch, index)=>(<Button key={index} onPress={() => Actions.placesInput({ category:eachSearch})} title={eachSearch}/>))}
       </View>
     </View>
       
@@ -23,10 +25,13 @@ export class InputSearch extends React.Component {
   }
 }
 
-const mapProps = state => ({message: state.message, currentInput: state.currentInput})
+const mapProps = state => ({inputSearch: state.inputSearch, currentInput: state.currentInput})
 const mapDispatch = dispatch => ({
-    addCommunication: message => dispatch(addCommunication(message)),
-    changeInput: input => dispatch(changeInput(input))
+  changeInput: input => dispatch(changeInput(input)),
+  addInputSearch: search => {
+      dispatch(addInputSearch(search))
+      dispatch(clearInput())
+    }
 })
 export default connect(mapProps,mapDispatch)(InputSearch)
 

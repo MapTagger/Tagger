@@ -2,13 +2,12 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addCommunication, changeInput} from '../store'
+import store, {changeInput} from '../store'
 
 export class Map extends React.Component {
   render() {
 
-    //console.log('Look Here', store)
-
+    console.log('map category')
     return (
       
     <View style={style.container}>
@@ -21,7 +20,8 @@ export class Map extends React.Component {
           longitudeDelta: 0.1,
         }}
       >
-      {this.props.markers.length > 0 && this.props.markers.map((eachMarker,index)=>(
+      {
+        this.props.markers.length > 0 && this.props.markers.filter(eachMarker=>eachMarker.category===this.props.category).map((eachMarker,index)=>(
           <View style={style.container} key={index}>
 
       <Marker draggable
@@ -36,7 +36,7 @@ export class Map extends React.Component {
     
       </MapView>
       <View style={style.sideBar}>
-        {this.props.message.map((eachMessage, index)=>(<Text key={index}>{eachMessage}</Text>))}
+        {this.props.markers.filter(eachPlace=>eachPlace.category===this.props.category).map((eachPlace, index)=>(<Text key={index}>{eachPlace.name}</Text>))}
       </View>
     </View>
       
@@ -44,9 +44,8 @@ export class Map extends React.Component {
   }
 }
 
-const mapProps = state => ({message: state.message, currentInput: state.currentInput, markers: state.markers})
+const mapProps = state => ({placesInput: state.placesInput, currentInput: state.currentInput, markers: state.markers})
 const mapDispatch = dispatch => ({
-    addCommunication: message => dispatch(addCommunication(message)),
     changeInput: input => dispatch(changeInput(input)),
     
 })
