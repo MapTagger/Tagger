@@ -13,7 +13,7 @@ export class GooglePlacesInput extends React.Component {
   render(){
     const category =this.props.navigation.state.params.category
 return (
-    <View style={style.container}>
+    <View style={style.communication}>
     <GooglePlacesAutocomplete
     style={style.communication}
       placeholder='Add Recommendation'
@@ -55,6 +55,8 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 
 
 const style = StyleSheet.create({
-  communication: {flex: 2, borderColor: 'black', borderWidth: 3, marginTop: 10},
-  container: {flex:1, height: 150}
+  communication: {flex: 1, borderColor: 'black', borderWidth: 3, height: 5},
+  container: {flex: 1 },
+  map: {flex: 5},
+  autocomplete: {flex: 1}
 })

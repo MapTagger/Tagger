@@ -5,6 +5,22 @@ import {Provider, connect} from 'react-redux'
 import store, {changeInput} from '../store'
 
 export class Map extends React.Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      region: {
+        latitude: 40.730610,
+        longitude: -73.935242,
+        latitudeDelta: 0.5,
+        longitudeDelta: 0.1,
+      }
+    }
+  }
+
+
+
   render() {
 
     console.log('map category')
@@ -13,12 +29,9 @@ export class Map extends React.Component {
     <View style={style.container}>
       <MapView
         style={style.map}
-        initialRegion={{
-          latitude: 40.730610,
-          longitude: -73.935242,
-          latitudeDelta: 0.5,
-          longitudeDelta: 0.1,
-        }}
+        region={this.state.region}
+        zoomEnabled = {true}
+        scrollEnabled = {true}
       >
       {
         this.props.markers.length > 0 && this.props.markers.filter(eachMarker=>eachMarker.category===this.props.category).map((eachMarker,index)=>(
@@ -32,8 +45,8 @@ export class Map extends React.Component {
       />
       </View>
       )
+    }
     )}
-    
       </MapView>
       <View style={style.sideBar}>
         {this.props.markers.filter(eachPlace=>eachPlace.category===this.props.category).map((eachPlace, index)=>(<Text key={index}>{eachPlace.name}</Text>))}
@@ -54,7 +67,7 @@ export default connect(mapProps,mapDispatch)(Map)
 const style = StyleSheet.create({
   container: {flex:1},
   map: { flex: 5 },
-  sideBar: {flex: 3, borderColor: 'black', borderWidth: 3},
+  sideBar: {flex: 2, borderColor: 'black', borderWidth: 3},
   communication: {flex: 2, borderColor: 'black', borderWidth: 3}
   
 })
