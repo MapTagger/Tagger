@@ -13,9 +13,9 @@ const workPlace = { description: 'Work', geometry: { location: { lat: 48.8496818
 export class GooglePlacesInput extends React.Component {
   render(){
 return (
-    <View style={style.container}>
+    <View style={style.communication}>
     <GooglePlacesAutocomplete
-    style={style.communication}
+    style={backgroundColor='red'}
       placeholder='Search'
       minLength={2} // minimum length of text to search
       autoFocus={false}
@@ -29,7 +29,7 @@ return (
         console.log('longitude', details.geometry.location.lng)
         this.props.addCommunication(data.structured_formatting.main_text)
 
-        const suggestion = {coordinates: {latitude: details.geometry.location.lat, longitude: details.geometry.location.lng}, name: data.structured_formatting.main_text }
+        const suggestion = {coordinates: {latitude: details.geometry.location.lat, longitude: details.geometry.location.lng}, name: data.structured_formatting.main_text, category: 'Tacos'}
         console.log(suggestion)
         this.props.addMarker(suggestion)
 
@@ -45,11 +45,14 @@ return (
       }}
       styles={{
         description: {
-          fontWeight: 'bold'
+          fontWeight: 'bold',
         },
         predefinedPlacesDescription: {
-          color: '#1faadb'
-        }
+          color: '#1faadb',
+        },
+        textInputContainer: {
+          height: 50,
+        },
       }}
  
       currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
@@ -73,7 +76,7 @@ return (
     //   renderLeftButton={() => <Image source={require('path/custom/left-icon')} />}
     //   renderRightButton={() => <Text>Custom text after the input</Text>}
     />
-    <Map  currentInput={this.props.currentInput} addCommunication={this.props.addCommunication} changeInput={this.props.changeInput} style={style} />
+    {/* <Map  currentInput={this.props.currentInput} addCommunication={this.props.addCommunication} changeInput={this.props.changeInput} style={style.map} /> */}
     </View>
   );
 }
@@ -91,8 +94,10 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 
 
 const style = StyleSheet.create({
-  communication: {flex: 2, borderColor: 'black', borderWidth: 3, marginTop: 10},
-  container: {flex:1, height: 150}
+  communication: {flex: 1, borderColor: 'black', borderWidth: 3, height: 5},
+  container: {flex: 1 },
+  map: {flex: 5},
+  autocomplete: {flex: 1}
 })
 
 // const style = StyleSheet.create({

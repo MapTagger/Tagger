@@ -5,6 +5,22 @@ import {Provider, connect} from 'react-redux'
 import store, {addCommunication, changeInput} from '../store'
 
 export class Map extends React.Component {
+
+  constructor(props){
+    super(props)
+
+    this.state = {
+      region: {
+        latitude: 40.730610,
+        longitude: -73.935242,
+        latitudeDelta: 0.5,
+        longitudeDelta: 0.1,
+      }
+    }
+  }
+
+
+
   render() {
 
     //console.log('Look Here', store)
@@ -14,14 +30,20 @@ export class Map extends React.Component {
     <View style={style.container}>
       <MapView
         style={style.map}
-        initialRegion={{
-          latitude: 40.730610,
-          longitude: -73.935242,
-          latitudeDelta: 0.5,
-          longitudeDelta: 0.1,
-        }}
+        region={this.state.region}
+        zoomEnabled = {true}
+        scrollEnabled = {true}
       >
-      {this.props.markers.length > 0 && this.props.markers.map((eachMarker,index)=>(
+          <Marker draggable
+        coordinate={{latitude: 40.716974, longitude: -73.99325499999999}}
+        title='Yum'
+        description='Dropping a Marker'
+        onDragEnd = {()=>{}}
+      />
+        
+      {this.props.markers.length > 0 && this.props.markers.map((eachMarker,index)=>{
+        
+        return(
           <View style={style.container} key={index}>
 
       <Marker draggable
@@ -32,8 +54,8 @@ export class Map extends React.Component {
       />
       </View>
       )
+    }
     )}
-    
       </MapView>
       <View style={style.sideBar}>
         {this.props.message.map((eachMessage, index)=>(<Text key={index}>{eachMessage}</Text>))}
@@ -55,7 +77,7 @@ export default connect(mapProps,mapDispatch)(Map)
 const style = StyleSheet.create({
   container: {flex:1},
   map: { flex: 5 },
-  sideBar: {flex: 3, borderColor: 'black', borderWidth: 3},
+  sideBar: {flex: 2, borderColor: 'black', borderWidth: 3},
   communication: {flex: 2, borderColor: 'black', borderWidth: 3}
   
 })
