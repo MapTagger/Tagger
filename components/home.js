@@ -8,10 +8,10 @@ export const Home = () => {
             <Text style={style.text}>Welcome to Tagger</Text>
             <Image
             style={style.image}
-            source={require('./pin.png')}
+            source={require('./purple-pin.png')}
           />
             <View style={style.button}>
-            <Button onPress={() => Actions.inputSearch()} title="next" />
+            <Button color="black" onPress={() => Actions.inputSearch()} title="next" />
             </View>
         </View>
     )
@@ -21,9 +21,9 @@ export const Home = () => {
 
 const style = StyleSheet.create({
     container: { flex:1, backgroundColor: 'white' },
-    text: { color: 'black', fontWeight: 'bold', fontSize: 50, top: 120, textAlign: 'center'},
+    text: { color: 'black', fontWeight: 'bold', fontSize: 50, top: 50, textAlign: 'center'},
     button: { top: 160 },
-    image: { height: 100, width: 100, top: 140, left: 130 }
+    image: { height: 350, width: 420, top: 100, left: 80}
   })
 
 export default Home 
