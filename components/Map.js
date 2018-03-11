@@ -71,18 +71,16 @@ export class Map extends React.Component {
         key={index}
         pinColor="#9A18DB"
       />
-      )
-    )}
+      ))}
       </MapView>
-    );
+    )}
   }
-}
 
 const mapProps = state => ({currentInput: state.currentInput, markers: state.markers})
 const mapDispatch = dispatch => ({
     changeInput: input => dispatch(changeInput(input)),
-    
-})
+  })
+
 export default connect(mapProps,mapDispatch)(Map)
 
 const style = StyleSheet.create({
