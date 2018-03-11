@@ -70,6 +70,7 @@ export class Map extends React.Component {
         coordinate={eachMarker.coordinates}
         title={eachMarker.name}
         key={index}
+        pinColor="#9A18DB"
       />
       )
     )
