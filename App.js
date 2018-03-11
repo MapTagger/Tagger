@@ -9,6 +9,8 @@ import Routes from './routes.js'
 import Home from './components/home.js'
 import Map from './components/map.js'
 
+import Input from './components/input-search'
+
 
 //socket
 import socket, { subscribeToTimer } from './api.js'

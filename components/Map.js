@@ -56,7 +56,6 @@ export class Map extends React.Component {
 
   render() {
     return (
-  <View style={style.container}>
       <MapView
         style={style.map}
         initialRegion={this.state.region}
@@ -72,26 +71,16 @@ export class Map extends React.Component {
         key={index}
         pinColor="#9A18DB"
       />
-      )
-    )
-    }
-
+      ))}
       </MapView>
-      <View style={style.sideBar}>
-      <ScrollView>
-        {this.props.markers.filter(eachPlace=>eachPlace.category===this.props.category).map((eachPlace, index) => (<Button onPress={() => Actions.selectedPlace({ name: eachPlace.name })} key={index} title={eachPlace.name} />))}
-        </ScrollView>
-      </View>
-      </View>
-    );
+    )}
   }
-}
 
 const mapProps = state => ({currentInput: state.currentInput, markers: state.markers})
 const mapDispatch = dispatch => ({
     changeInput: input => dispatch(changeInput(input)),
-    
-})
+  })
+
 export default connect(mapProps,mapDispatch)(Map)
 
 const style = StyleSheet.create({
