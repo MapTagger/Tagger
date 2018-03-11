@@ -10,7 +10,7 @@ export const subscribeToTimer = (interval, cb) =>{
 
 socket.on('connection', ()=>{
     console.log('I CONNECTED TO SERVER')
-} )
+})
 
 export default socket
 

@@ -12,9 +12,10 @@ const ADD_MARKER = 'ADD_MARKER'
 export const changeInput = input => ({type: CHANGE_INPUT, input})
 export const clearInput = () => ({type: CLEAR_INPUT})
 export const addInputSearch = search => { socket.emit('new-query', search);return ({type: ADD_INPUT_SEARCH, search})}
-export const addMarker = marker => ({type: ADD_MARKER, marker})
+export const addMarker = marker => { socket.emit('new-recommendation', marker); return ({type: ADD_MARKER, marker})}
 
 export const socketAddInputSearch = search => ({type: ADD_INPUT_SEARCH, search})
+export const socketAddMarker = marker => ({type: ADD_MARKER, marker})
 
 
 const initialState = {

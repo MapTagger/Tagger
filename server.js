@@ -19,6 +19,9 @@ io.on('connection', (client) => {
     console.log('A SOCKET ACTUALLY EMITTED ', query)
     client.broadcast.emit('new-query', query)
   })
+  client.on('new-recommendation', rec => {
+    client.broadcast.emit('new-recommendation', rec)
+  })
 
 
 
