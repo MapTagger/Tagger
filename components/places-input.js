@@ -2,7 +2,7 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addPlace, changeInput, clearInput, addMarker} from '../store'
+import store, {addPlace, changeInput, clearInput, addMarker, addUserRec, pickWinner} from '../store'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 
 import Map from './map'
@@ -57,7 +57,8 @@ return (
 const mapProps = state => ({currentInput: state.currentInput, markers: state.markers })
 const mapDispatch = dispatch => ({
     changeInput: input => dispatch(changeInput(input)),
-    addMarker: marker => dispatch(addMarker(marker))
+    addMarker: marker => {dispatch(addMarker(marker)); dispatch(addUserRec(marker.name))},
+    pickWinner: winner => {dispatch(pickWinner(winner))}
 })
 
 export default connect(mapProps,mapDispatch)(GooglePlacesInput)

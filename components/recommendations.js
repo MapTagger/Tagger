@@ -11,22 +11,27 @@ export class RecommendationsList extends React.Component {
     }
 
     render() {
+        console.log('If you searched for ', this.props.category, ' originally, you will see a crown')
+        console.log('Here is your array of searches ', this.props.yourSearches)
         return (
             <ScrollView style={style.recsList}>
                 {this.props.markers.filter(eachPlace => eachPlace.category === this.props.category).map((eachPlace, index) => (
                     <View style={style.recButton}>
                         <Button color='black' key={index} title={eachPlace.name} />
-                        <Button color='black' key={index} title='Crown'/>
+                        { !this.props.yourSearches.includes(this.props.category) &&
+                        <Button color='black' onPress={()=>{}}key={index} title='Crown'/>
+                        }
                     </View>))}
             </ScrollView>
         );
     }
 }
 
-const mapProps = state => ({ currentInput: state.currentInput, markers: state.markers })
+const mapProps = state => ({ currentInput: state.currentInput, markers: state.markers, yourSearches: state.yourSearches })
 const mapDispatch = dispatch => ({
     changeInput: input => dispatch(changeInput(input)),
-
+    addMarker: marker => {dispatch(addMarker(marker)); dispatch(addUserRec(marker.name))},
+    pickWinner: winner => {dispatch(pickWinner(winner))}
 })
 export default connect(mapProps, mapDispatch)(RecommendationsList)
 

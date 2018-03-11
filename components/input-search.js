@@ -2,7 +2,7 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addInputSearch, changeInput, clearInput} from '../store'
+import store, {addInputSearch, changeInput, clearInput, addUserSearch} from '../store'
 import {Actions} from 'react-native-router-flux'
 import Map from './map.js'
 
@@ -37,6 +37,7 @@ const mapDispatch = dispatch => ({
   changeInput: input => dispatch(changeInput(input)),
   addInputSearch: search => {
       dispatch(addInputSearch(search))
+      dispatch(addUserSearch(search))
       dispatch(clearInput())
     }
 })
