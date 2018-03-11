@@ -15,9 +15,10 @@ export class GooglePlacesInput extends React.Component {
 return (
   <View style={style.container}>
     <View style={style.communication}>
+    <Text>Where's the best {category}</Text>
     <GooglePlacesAutocomplete
     style={style.communication}
-      placeholder='Add Recommendation'
+      placeholder='Search'
       minLength={2} // minimum length of text to search
       autoFocus={false}
       returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
@@ -61,6 +62,6 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 const style = StyleSheet.create({
   communication: {flex: 1, borderColor: 'black', borderWidth: 3, height: 5},
   container: {flex: 1 },
-  map: {flex: 4},
+  map: {flex: 5},
   autocomplete: {flex: 1}
 })
