@@ -3,6 +3,8 @@ import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native'
 import { Provider, connect } from 'react-redux'
 import store, { changeInput } from '../store'
+import {Actions} from 'react-native-router-flux'
+
 
 export class RecommendationsList extends React.Component {
 
@@ -13,11 +15,13 @@ export class RecommendationsList extends React.Component {
     render() {
         return (
             <ScrollView style={style.recsList}>
-                {this.props.markers.filter(eachPlace => eachPlace.category === this.props.category).map((eachPlace, index) => (
-                    <View style={style.recButton}>
-                        <Button color='black' key={index} title={eachPlace.name} />
-                        <Button color='black' key={index} title='Crown'/>
-                    </View>))}
+                {this.props.markers.filter(eachPlace => eachPlace.category === this.props.category).map((eachPlace, index) => {
+                    return (
+                    <View style={style.recButton} key={index}>
+                        <Button onPress={() => Actions.selectedPlace({name: eachPlace.name})} color='black' title={eachPlace.name} />
+                        <Button onPress={() => console.log('pressed')} color='black' title='Crown'/>
+                    </View>
+                )})}
             </ScrollView>
         );
     }

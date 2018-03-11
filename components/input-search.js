@@ -21,8 +21,8 @@ import Map from './map.js'
       <Map/>
       <View style={style.listContainer}>
         {this.props.inputSearch.map((eachSearch, index)=>(
-         <View style={style.listCat}>
-          <Button color='black' key={index} onPress={() => Actions.placesInput({ category:eachSearch})} title={eachSearch}/>
+         <View style={style.listCat} key={index}>
+          <Button color='black' onPress={() => Actions.placesInput({ category:eachSearch})} title={eachSearch}/>
         </View>
         ))}
       </View>
