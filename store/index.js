@@ -1,5 +1,7 @@
 import {createStore} from 'redux'
 
+import socket from '../api.js'
+
 
 const CHANGE_INPUT = 'CHANGE_INPUT'
 const CLEAR_INPUT = 'CLEAR_INPUT'
@@ -9,8 +11,10 @@ const ADD_MARKER = 'ADD_MARKER'
 
 export const changeInput = input => ({type: CHANGE_INPUT, input})
 export const clearInput = () => ({type: CLEAR_INPUT})
-export const addInputSearch = search => ({type: ADD_INPUT_SEARCH, search})
+export const addInputSearch = search => { socket.emit('new-query', search);return ({type: ADD_INPUT_SEARCH, search})}
 export const addMarker = marker => ({type: ADD_MARKER, marker})
+
+export const socketAddInputSearch = search => ({type: ADD_INPUT_SEARCH, search})
 
 
 const initialState = {
