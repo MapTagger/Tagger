@@ -27,10 +27,9 @@ return (
       fetchDetails={true}
       renderDescription={(row) => row.description} // custom description render
       onPress={(data, details = null) => { // 'details' is provided when fetchDetails = true
-        console.log('data', data.structured_formatting.main_text);
-        console.log('latitude', details.geometry.location.lat);
-        console.log('longitude', details.geometry.location.lng)
-        const suggestion = {coordinates: {latitude: details.geometry.location.lat, longitude: details.geometry.location.lng}, name: data.structured_formatting.main_text, category: category}
+        console.log('details', details);
+        console.log('data', data)
+        const suggestion = {coordinates: {latitude: details.geometry.location.lat, longitude: details.geometry.location.lng}, name: data.structured_formatting.main_text, category: category, phone: details.formatted_phone_number, address: details.formatted_address, open: details.opening_hours.weekday_text }
         console.log(suggestion)
         this.props.addMarker(suggestion)
       }}
@@ -65,7 +64,6 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 
 
 const style = StyleSheet.create({
-
   container: {flex: 1 },
 
   recommender: { borderColor: 'black', borderBottomWidth: 3, height: 150},
