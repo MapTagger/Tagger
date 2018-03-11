@@ -12,7 +12,7 @@ import {Actions} from 'react-native-router-flux'
     return (
       
     <View style={style.container}>
-      <TextInput style={style.input} onChangeText = {(text)=>{this.props.changeInput(text)}} value={this.props.currentInput} placeholder='What are you looking for?' style={style.communication}/>
+      <TextInput style={style.input} onChangeText={(text)=>{this.props.changeInput(text)}} value={this.props.currentInput} placeholder='What are you looking for?' style={style.communication}/>
       <Button style={style.button} onPress = {(event)=>{this.props.addInputSearch(this.props.currentInput)}}title='send'>Add</Button>
       <View style={style.sideBar}>
         {this.props.inputSearch.map((eachSearch, index)=>(<Button key={index} onPress={() => Actions.placesInput({ category:eachSearch})} title={eachSearch}/>))}
@@ -36,8 +36,13 @@ export default connect(mapProps,mapDispatch)(InputSearch)
 const style = StyleSheet.create({
   container: {flex:1},
   map: { flex: 5 },
-  sideBar: {flex: 3, borderColor: 'black', borderWidth: 3},
-  input: {flex: 2, borderColor: 'black', borderWidth: 3},
+  sideBar: {flex: 8},
+  input: {
+    margin: 15,
+    height: 40,
+    borderColor: '#7a42f4',
+    borderWidth: 1
+ },
   button: {flex: 2, borderColor: 'black', borderWidth: 3}
   
 })
