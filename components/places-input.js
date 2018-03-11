@@ -3,8 +3,10 @@ import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
 import store, {addPlace, changeInput, clearInput, addMarker} from '../store'
-import Map from './map'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
+import Map from './map'
+import RecommendationsList from './recommendations'
  
 
 export class GooglePlacesInput extends React.Component {
@@ -14,10 +16,9 @@ export class GooglePlacesInput extends React.Component {
     const category =this.props.navigation.state.params.category
 return (
   <View style={style.container}>
-    <View style={style.communication}>
+    <View style={style.recommender}>
     <Text>Where's the best {category}</Text>
     <GooglePlacesAutocomplete
-    style={style.communication}
       placeholder='Search'
       minLength={2} // minimum length of text to search
       autoFocus={false}
@@ -41,8 +42,12 @@ return (
       }}
     />
     </View>
+
     <View style={style.map}>
-    <Map category={category}/>
+      <Map category={category}/>
+    </View>
+    <View style={style.recommenderList}>
+      <RecommendationsList category={category}/>
     </View>
     </View>
   );
@@ -60,8 +65,13 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 
 
 const style = StyleSheet.create({
-  communication: {flex: 1, borderColor: 'black', borderWidth: 3, height: 5},
+
   container: {flex: 1 },
-  map: {flex: 5},
-  autocomplete: {flex: 1}
+
+  recommender: { borderColor: 'black', borderBottomWidth: 3, height: 150},
+  
+  map: {flex: 6},
+
+  recommenderList: {flex: 4}
+  
 })

@@ -23,7 +23,6 @@ export class Map extends React.Component {
 
     return (
       
-    <View style={style.container}>
       <MapView
         style={style.map}
         initialRegion={this.state.region}
@@ -38,17 +37,8 @@ export class Map extends React.Component {
         key={index}
       />
       )
-    )
-    }
-
+    )}
       </MapView>
-      <View style={style.sideBar}>
-      <ScrollView>
-        {this.props.markers.filter(eachPlace=>eachPlace.category===this.props.category).map((eachPlace, index)=>(<Text key={index}>{eachPlace.name}</Text>))}
-        </ScrollView>
-      </View>
-    </View>
-      
     );
   }
 }
