@@ -32,13 +32,11 @@ export class Map extends React.Component {
       >
       {
         this.props.markers.length > 0 && this.props.markers.filter(eachMarker=>eachMarker.category===this.props.category).map((eachMarker,index)=>(
-          <View style={style.container} key={index}>
-
       <Marker
         coordinate={eachMarker.coordinates}
         title={eachMarker.name}
+        key={index}
       />
-      </View>
       )
     )
     }
