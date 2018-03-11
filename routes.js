@@ -9,9 +9,9 @@ export default class Routes extends React.Component {
       return ( 
         <Router>
         <Scene key="root">
-          <Scene key="home" component={Home}/>
-          <Scene key="inputSearch" component={InputSearch} title="InputSearch"/>
-          <Scene key="placesInput" path={"/placesInput/:category"} component={GooglePlacesInput} title="PlacesInput"/>
+          <Scene key="home" component={Home} />
+          <Scene key="inputSearch" component={InputSearch}/>
+          <Scene key="placesInput" path={"/placesInput/:category"} component={GooglePlacesInput} title="Recommendations"/>
         </Scene>
       </Router>
       )

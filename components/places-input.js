@@ -13,6 +13,7 @@ export class GooglePlacesInput extends React.Component {
   render(){
     const category =this.props.navigation.state.params.category
 return (
+  <View style={style.container}>
     <View style={style.communication}>
     <GooglePlacesAutocomplete
     style={style.communication}
@@ -38,7 +39,10 @@ return (
         types: 'establishment' // default: 'geocode'
       }}
     />
+    </View>
+    <View style={style.map}>
     <Map category={category}/>
+    </View>
     </View>
   );
 }
@@ -57,6 +61,6 @@ export default connect(mapProps,mapDispatch)(GooglePlacesInput)
 const style = StyleSheet.create({
   communication: {flex: 1, borderColor: 'black', borderWidth: 3, height: 5},
   container: {flex: 1 },
-  map: {flex: 5},
+  map: {flex: 4},
   autocomplete: {flex: 1}
 })
