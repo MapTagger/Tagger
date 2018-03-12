@@ -20,7 +20,8 @@ export const SelectedPlace = (props) => {
           <Button onPress={() => Communications.phonecall(place.phone, true)} title={place.phone}/>
           </View>
           <Text style={style.text}>Hours:</Text>
-          { place.open.map((day, i) => <Text style={style.hours} key={i}>{day}</Text>)
+          {   
+              place.open.map((day, i) => <Text style={style.hours} key={i}>{day}</Text>)
 
           }
         

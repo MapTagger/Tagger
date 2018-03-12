@@ -1,6 +1,6 @@
 import React from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, Image } from 'react-native'
 import { Provider, connect } from 'react-redux'
 import store, { changeInput, pickWinner } from '../store'
 import {Actions} from 'react-native-router-flux'
@@ -24,7 +24,10 @@ export class RecommendationsList extends React.Component {
                     <View style={style.recButton} key={index}>
                         <Button onPress={() => Actions.selectedPlace({name: eachPlace.name})} color='black' title={eachPlace.name} />
                     {    this.props.yourSearches.includes(this.props.category) &&
-                        <Button onPress={() => {this.props.pickWinner(eachPlace)}} color='black' title='Crown'/>
+                        <TouchableOpacity onPress={() => {this.props.pickWinner(eachPlace)}}>
+                         <Image style={{height: 35, right: 12}}source={require('./tinyCrown.png')}/>
+                        </TouchableOpacity>
+                        // <Button onPress={() => {this.props.pickWinner(eachPlace)}} color='black' title='Crown'/>
                     }
                     </View>
                 )})}
@@ -44,6 +47,7 @@ export default connect(mapProps, mapDispatch)(RecommendationsList)
 const style = StyleSheet.create({
     container: { flex: 1 },
     recsList: { borderColor: 'black', borderTopWidth: 2, backgroundColor: '#9A18DB' },
-    recButton: { backgroundColor: 'white', borderColor: '#9A18DB', borderWidth: 1, padding: 2, borderRadius: 10, flexDirection: 'row'}
+    recButton: { backgroundColor: 'white', borderColor: '#5E09A8', borderWidth: 1, padding: 2, borderRadius: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}
+    
 
 })

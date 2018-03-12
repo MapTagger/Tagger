@@ -29,7 +29,13 @@ export class Map extends React.Component {
       latitudeDelta: .05,
       longitudeDelta: .01,
     }})
-  }, 3000)
+  }, 2000)
+  // setTimeout(()=>{
+  //   if(this.props.markers.length>0){
+  //     const goTo = this.props.markers[this.props.markers.length-1].coordinates
+  //     this.refs.map.animateToCoordinate(goTo)
+  //   }
+  // },3000)
   }
 
 
@@ -57,6 +63,7 @@ export class Map extends React.Component {
   render() {
     return (
       <MapView
+        ref='map'
         style={style.map}
         initialRegion={this.state.region}
         region={this.state.region}
@@ -64,7 +71,17 @@ export class Map extends React.Component {
         scrollEnabled = {true}
       >
       {
-        this.props.markers.length > 0 && this.props.markers.filter(eachMarker => eachMarker.category === this.props.category).map((eachMarker, index) => (
+        this.props.category === undefined &&
+          this.props.markers.map((eachMarker,index)=>(
+            <Marker
+            coordinate={eachMarker.coordinates}
+            title={eachMarker.name}
+            key={index}
+            pinColor="#9A18DB"
+            />
+      ))}
+      {
+        this.props.category && this.props.markers.length > 0 && this.props.markers.filter(eachMarker => eachMarker.category === this.props.category).map((eachMarker, index) => (
           <Marker
         coordinate={eachMarker.coordinates}
         title={eachMarker.name}
@@ -72,7 +89,7 @@ export class Map extends React.Component {
         pinColor="#9A18DB"
       />
       ))}
-      {this.props.winners.length > 0 && this.props.winners.map((eachWinner,index)=> (
+      {this.props.winners.length > 0 && this.props.winners.filter(eachMarker => eachMarker.category === this.props.category).map((eachWinner,index)=> (
           <Marker
           coordinate={eachWinner.coordinates}
           title={eachWinner.name}

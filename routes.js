@@ -4,6 +4,7 @@ import GooglePlacesInput from './components/places-input.js'
 import InputSearch from './components/input-search.js'
 import Home from './components/home.js'
 import SelectedPlace from './components/selected-place.js'
+import WinPage from './components/winPage'
 
 
 export default class Routes extends React.Component {
@@ -15,6 +16,7 @@ export default class Routes extends React.Component {
           <Scene key="inputSearch" component={InputSearch} title="Search"/>
           <Scene key="placesInput" path={"/placesInput/:category"} component={GooglePlacesInput} title="Recommendations"/>
           <Scene key="selectedPlace" path={"/selectedPlace/:name"} component={SelectedPlace} title="Information"/>
+          <Scene key='winPage' component={WinPage} />
         </Scene>
       </Router>
       )

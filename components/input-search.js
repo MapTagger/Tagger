@@ -2,7 +2,7 @@ import React from 'react';
 import  MapView, { Marker } from 'react-native-maps';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native'
 import {Provider, connect} from 'react-redux'
-import store, {addInputSearch, changeInput, clearInput, addUserSearch} from '../store'
+import store, {addInputSearch, socketAddInputSearch, socketAddMarker, changeInput, clearInput, addUserSearch, socketPickWinner} from '../store'
 import {Actions} from 'react-native-router-flux'
 import Map from './map.js'
 
@@ -24,7 +24,8 @@ import socket from '../api.js'
     })
     socket.on('new-winner', winner => {
       store.dispatch(socketPickWinner(winner))
-      Action.home()
+      console.log('You have recommended these ', this.props.yourRecs)
+      if(this.props.yourRecs.includes(winner.name)) Actions.winPage()
     })
     
   }
@@ -71,8 +72,8 @@ const style = StyleSheet.create({
   container: {flex:1},
 
   map: { flex: 5 },
-  input: {borderColor: '#9A18DB', borderWidth: 2, height: 100, fontSize: 30},
-  button: {borderColor: 'black', borderWidth: 3},
-  listContainer: {height: 300, flexDirection: 'row', flexWrap: 'wrap',  backgroundColor: '#9A18DB'},
-  listCat: {flexWrap:'wrap', height: 50, width: 122, borderColor: '#9A18DB', borderWidth: 1, justifyContent: 'center', borderRadius: 8, margin: 1, backgroundColor: 'white'}
+  input: {borderColor: '#9A18DB', borderWidth: 2, height: 70, fontSize: 30},
+  button: {borderColor: 'black', borderWidth: 2},
+  listContainer: {height: 200, flexDirection: 'row', flexWrap: 'wrap',  backgroundColor: '#9A18DB'},
+  listCat: {flexWrap:'wrap', height: 50, width: 122, borderColor: '#5E09A8', borderWidth: 1, justifyContent: 'center', borderRadius: 8, margin: 1, backgroundColor: 'white'}
 })
