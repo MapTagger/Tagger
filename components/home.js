@@ -21,9 +21,9 @@ export const Home = () => {
 
 const style = StyleSheet.create({
     container: { flex:1, backgroundColor: 'white' },
-    text: { color: 'black', fontWeight: 'bold', fontSize: 50, top: 50, textAlign: 'center'},
-    button: { top: 160 },
-    image: { height: 350, width: 420, top: 100, left: 80}
+    text: { color: 'black', fontWeight: 'bold', fontSize: 40, top: 30, textAlign: 'center'},
+    button: { top: 100 },
+    image: { height: 350, width: 420, top: 70, left: 80}
   })
 
 export default Home 

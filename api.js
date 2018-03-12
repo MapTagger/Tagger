@@ -2,6 +2,7 @@ const openSocket = require('socket.io-client')
 import store from './store'
 
 const socket = openSocket('http://172.16.21.145:8000', {transports: ['websocket']} )
+//const socket = openSocket('http://192.168.0.4:8000', {transports: ['websocket']} )
 
 export const subscribeToTimer = (interval, cb) =>{
     socket.on('timer', timestamp => cb(null, timestamp))
