@@ -72,11 +72,20 @@ export class Map extends React.Component {
         pinColor="#9A18DB"
       />
       ))}
+      {this.props.winners.length > 0 && this.props.winners.map((eachWinner,index)=> (
+          <Marker
+          coordinate={eachWinner.coordinates}
+          title={eachWinner.name}
+          image={require('./crown.png')}
+          key={index}
+          pinColor="#9AFFFF"
+        />
+      ))}
       </MapView>
     )}
   }
 
-const mapProps = state => ({currentInput: state.currentInput, markers: state.markers})
+const mapProps = state => ({currentInput: state.currentInput, markers: state.markers, winners: state.winners})
 const mapDispatch = dispatch => ({
     changeInput: input => dispatch(changeInput(input)),
   })

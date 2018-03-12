@@ -22,6 +22,9 @@ io.on('connection', (client) => {
   client.on('new-recommendation', rec => {
     client.broadcast.emit('new-recommendation', rec)
   })
+  client.on('new-winner', winner=>{
+    client.broadcast.emit('new-winner', winner)
+  })
 
 
 

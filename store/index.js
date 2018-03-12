@@ -18,12 +18,13 @@ export const addInputSearch = search => { socket.emit('new-query', search);retur
 export const addMarker = marker => { socket.emit('new-recommendation', marker); return ({type: ADD_MARKER, marker})}
 export const addUserSearch = search => {return {type:ADD_USER_SEARCH, search}}
 export const addUserRec = rec => {return {type:ADD_USER_REC, rec}}
-export const pickWinner = winner => {return {type: WINNER_EVENT, winner}}
+export const pickWinner = winner => { socket.emit('new-winner', winner); return {type: WINNER_EVENT, winner}}
 
 
 //socket emissions
 export const socketAddInputSearch = search => ({type: ADD_INPUT_SEARCH, search})
 export const socketAddMarker = marker => ({type: ADD_MARKER, marker})
+export const socketPickWinner = winner => ({type: WINNER_EVENT, winner})
 
 
 const initialState = {
